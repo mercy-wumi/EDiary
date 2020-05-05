@@ -36,6 +36,7 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        />-->
 <TextView
+    android:id="@+id/noteDiary"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="I started learning android since I have passion for it and since then I have involved myself in online learning at Udacity and also personal practice."
