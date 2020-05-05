@@ -53,9 +53,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public myViewHolder(@NonNull View itemView) {
         super(itemView);
         event_title= itemView.findViewById(R.id.titleDiary);
-        event_image= itemView.findViewWithTag(R.id.imageDiary);
-        //event_date= itemView.findViewById(R.id.dateDiary);
         event_image= itemView.findViewById(R.id.imageDiary);
+        //event_date= itemView.findViewById(R.id.dateDiary);
+        event_note= itemView.findViewById(R.id.noteDiary);
 
     }
 }
