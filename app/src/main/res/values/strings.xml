@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">E-Diary</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="add_event">Add Event</string>
+    <string name="upload_images">Upload Images</string>
+    <string name="event_details">Event Details</string>
+    <string name="event">Event</string>
+    <string name="date">Date</string>
+    <string name="sign_in">Sign in</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="new_user">New User?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="e_mail">E-mail</string>
+    <string name="already_a_user">Already a user?</string>
+
+
+</resources>

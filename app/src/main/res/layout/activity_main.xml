@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimary">
+    <ImageView
+        android:id="@+id/diary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/ediary">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textDiary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E-Diary"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diary"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="30sp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif-black"
+        android:padding="20dp"/>
+
+    <TextView
+        android:id="@+id/textnote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't miss out on important events that happened to you"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textDiary"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:padding="50dp"
+        android:textColor="@android:color/white"
+        android:textStyle="italic"/>
+
+    <Button
+        android:id="@+id/signinBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:text="sign in"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textnote" />
+
+    <Button
+        android:id="@+id/signup_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sign up"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@id/signinBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textnote"
+        android:backgroundTint="@android:color/transparent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
