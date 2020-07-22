@@ -17,4 +17,8 @@ public class signup extends AppCompatActivity {
         Intent intentThree= new Intent(signup.this, signin.class);
         startActivity(intentThree);
     }
+    public void event(View view) {
+        Intent intentevent= new Intent(signup.this, Event.class);
+        startActivity(intentevent);
+    }
 }

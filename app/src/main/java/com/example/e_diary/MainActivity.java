@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     Button signinButton;
@@ -16,9 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Toolbar mtoolbar=findViewById(R.id.eventToolbar);
-        setSupportActionBar(mtoolbar);
 
         signinButton=findViewById(R.id.signinBtn);
         signupButton=findViewById(R.id.signup_btn);

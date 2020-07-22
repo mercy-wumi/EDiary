@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "968978781568",
+    "firebase_url": "https://ediary-879db.firebaseio.com",
+    "project_id": "ediary-879db",
+    "storage_bucket": "ediary-879db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968978781568:android:dc39fdb96624888c965d65",
+        "android_client_info": {
+          "package_name": "com.example.e_diary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968978781568-bq5508bpe7t2tc3hgusi3unj6hi0g5tn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_diary",
+            "certificate_hash": "88a855b6d80a9b4be4166c7d175844871e6f7bc5"
+          }
+        },
+        {
+          "client_id": "968978781568-urteig43o9sb0cog26fe5rt55maagfgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhnXp88OTA4JRj7iy9kcP5AU438wThnrI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968978781568-urteig43o9sb0cog26fe5rt55maagfgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

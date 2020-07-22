@@ -18,8 +18,8 @@ public class signin extends AppCompatActivity {
         startActivity(intentFour);
     }
 
-    public void event(View view) {
-        Intent intentevent= new Intent(signin.this, Event.class);
+    public void eventlist(View view) {
+        Intent intentevent= new Intent(signin.this, EventList.class);
         startActivity(intentevent);
     }
 }

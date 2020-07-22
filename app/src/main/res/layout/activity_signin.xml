@@ -61,7 +61,7 @@
         android:layout_marginTop="50dp"
         android:background="@color/colorPrimary"
         android:text="@string/sign_in"
-        android:onClick="event"
+        android:onClick="eventlist"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

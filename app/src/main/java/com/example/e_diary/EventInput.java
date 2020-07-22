@@ -1,20 +1,21 @@
 package com.example.e_diary;
 
-import android.widget.ImageView;
+import java.io.Serializable;
 
-public class EventInput {
+public class EventInput implements Serializable {
     private String eventname;
     private String eventdetails;
-    //private String eventdate;
-    private int eventimage;
+    private String eventdate;
+    private String  eventimage;
+    private String id;
 
-// add date as parameter to EventInput constructor
+    public EventInput(){}
 
-    public EventInput(int pic, String title,String details ){
-        eventimage= pic;
-        eventname= title;
-        //eventdate = date;
-        eventdetails = details;
+    public EventInput(String pic, String title,String details, String date ){
+        this.eventname= title;
+        this.eventdate= date;
+        this.eventdetails= details;
+        this.eventimage= pic;
     }
 
     public String getEventname() {
@@ -25,16 +26,35 @@ public class EventInput {
         return eventdetails;
     }
 
-//    public String getEventdate() {
-//        return eventdate;
-//    }
+    public String getEventdate() {
+        return eventdate;
+    }
 
-    public int getEventimage() {
+    public String getEventimage() {
         return eventimage;
     }
 
-//    public void setEventdate(String eventdate) {
-//        this.eventdate = eventdate;
-//    }
+    public void setEventname(String eventname) {
+        this.eventname = eventname;
+    }
 
+    public void setEventdetails(String eventdetails) {
+        this.eventdetails = eventdetails;
+    }
+
+    public void setEventdate(String eventdate) {
+        this.eventdate = eventdate;
+    }
+
+    public void setEventimage(String eventimage) {
+        this.eventimage = eventimage;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
