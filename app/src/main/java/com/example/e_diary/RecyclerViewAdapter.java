@@ -43,6 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 eventInput.setId(snapshot.getKey());
                 event.add(eventInput);
                 notifyItemInserted(event.size()-1);
+                notifyDataSetChanged();
             }
 
             @Override
@@ -109,7 +110,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public void onClick(View view) {
             int position = getAdapterPosition();
             Log.d("click", String.valueOf(position));
-            EventInput selectedEvent= events.get(position);
+            EventInput selectedEvent= event.get(position);
             Intent intent= new Intent(view.getContext(), Event.class);
             intent.putExtra("Event", selectedEvent);
             view.getContext().startActivity(intent);

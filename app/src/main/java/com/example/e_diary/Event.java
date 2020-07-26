@@ -55,9 +55,14 @@ public class Event extends AppCompatActivity {
         eventDetails= findViewById(R.id.event_details);
         Intent intent= getIntent();
         EventInput event_input= (EventInput) intent.getSerializableExtra("Event");
+
         if (event_input==null){
-            event_input= new EventInput();
+
+            // TODO: Event Input cannot be null as you thought it to be later because you have initialized it here.
+
+            event_input = new EventInput();
         }
+
         this.event_input = event_input;
         eventTitle.setText(event_input.getEventname());
         eventDate.setText(event_input.getEventdate());
@@ -138,6 +143,11 @@ public class Event extends AppCompatActivity {
                 backToList();
                 return true;
             case R.id.delete_menu:
+                // Check if fields are empty
+                if (isClean()){
+                    Toast.makeText(this, "There's Nothing to delete!", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
                 deleteEvent();
                 Toast.makeText(this, "Event deleted", Toast.LENGTH_LONG).show();
                 backToList();
@@ -169,6 +179,9 @@ public class Event extends AppCompatActivity {
             Toast.makeText(this, "please save this event before deleting", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // TODO: event_input cannot be null bcos you have initialized it above.
+        //  Hence this part of the code will still run and that's what's causing the error
         mDatabaseReference.child(event_input.getId()).removeValue();
     }
 
@@ -182,5 +195,13 @@ public class Event extends AppCompatActivity {
         eventDetails.setText("");
         eventDate.setText("");
         eventTitle.requestFocus();
+    }
+
+    /** I created this method to check if the fields are empty. So instead of checking if the event_input
+     *  is null I checked for empty fields when the delete action is triggered*/
+    private boolean isClean(){
+        return eventTitle.getText().toString().equals("") ||
+        eventDetails.getText().toString().equals("") ||
+        eventDate.getText().toString().equals("");
     }
 }

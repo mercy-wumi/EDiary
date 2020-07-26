@@ -26,6 +26,7 @@ public class EventList extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildListener;
+    private RecyclerViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,8 @@ public class EventList extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
        RecyclerView recyclerView= findViewById(R.id.recycler);
-       final RecyclerViewAdapter adapter= new RecyclerViewAdapter();
-       recyclerView.setAdapter(adapter);
+       mAdapter = new RecyclerViewAdapter();
+       recyclerView.setAdapter(mAdapter);
        LinearLayoutManager eventLayoutManager= new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
        recyclerView.setLayoutManager(eventLayoutManager);
 
