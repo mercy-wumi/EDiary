@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -24,8 +26,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +40,12 @@ public class Event extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private static final int PICTURE_RESULT = 42;
+    private StorageReference mStorageRef;
 
     TextInputEditText eventDate;
     TextInputEditText eventTitle;
     TextInputEditText eventDetails;
+    ImageView imageView;
     EventInput event_input;
 
     @Override
@@ -50,13 +56,17 @@ public class Event extends AppCompatActivity {
         FirebaseUtil.openFbReference("EventInput");
         mFirebaseDatabase=  FirebaseUtil.mFirebaseDatabase;
         mDatabaseReference=  FirebaseUtil.mDatabaseReference;
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
         eventDate= findViewById(R.id.event_date);
         eventTitle= findViewById(R.id.event_title);
         eventDetails= findViewById(R.id.event_details);
+        imageView= findViewById(R.id.image);
         Intent intent= getIntent();
         EventInput event_input= (EventInput) intent.getSerializableExtra("Event");
 
-        if (event_input==null){
+        /**guess the if statement should be removed */
+        if (event_input == null){
 
             // TODO: Event Input cannot be null as you thought it to be later because you have initialized it here.
 
@@ -67,6 +77,7 @@ public class Event extends AppCompatActivity {
         eventTitle.setText(event_input.getEventname());
         eventDate.setText(event_input.getEventdate());
         eventDetails.setText(event_input.getEventdetails());
+        showimage(event_input.getEventimage());
 
         Toolbar mtoolbar=findViewById(R.id.eventToolbar);
         setSupportActionBar(mtoolbar);
@@ -122,12 +133,14 @@ public class Event extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICTURE_RESULT && resultCode == RESULT_OK){
             Uri imageUri = data.getData();
-            StorageReference ref= FirebaseUtil.mStorageRef.child(imageUri.getLastPathSegment());
+            final StorageReference ref= FirebaseUtil.mStorageRef.child(imageUri.getLastPathSegment());
             ref.putFile(imageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    String url = taskSnapshot.getUploadSessionUri().toString();
+                    String url = ref.getDownloadUrl().toString();
+                    //getUploadSessionUri().toString();
                     event_input.setEventimage(url);
+                    showimage(url);
                 }
             });
         }
@@ -203,5 +216,13 @@ public class Event extends AppCompatActivity {
         return eventTitle.getText().toString().equals("") ||
         eventDetails.getText().toString().equals("") ||
         eventDate.getText().toString().equals("");
+    }
+
+    private void showimage(String url){
+        if (url != null && url.isEmpty() == false){
+            int width = Resources.getSystem().getDisplayMetrics().widthPixels;
+            Picasso.get().load(url).resize(width, width*2/3).centerCrop().into(imageView);
+
+        }
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signup">
+    tools:context=".Signup">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/signup_toolbar"
@@ -68,13 +68,12 @@
         app:layout_constraintTop_toBottomOf="@id/username"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signup_button"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:background="@color/colorPrimary"
         android:text="@string/sign_up"
-        android:onClick="event"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.373"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button"/>
+        app:layout_constraintTop_toBottomOf="@id/signup_button"/>
 
     <TextView
         android:id="@+id/sign_in"
@@ -103,6 +102,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toEndOf="@id/existing_user"
-        app:layout_constraintTop_toBottomOf="@id/button" />
+        app:layout_constraintTop_toBottomOf="@id/signup_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

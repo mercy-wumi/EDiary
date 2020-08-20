@@ -34,12 +34,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         FirebaseUtil.openFbReference("EventInput");
         mFirebaseDatabase=  FirebaseUtil.mFirebaseDatabase;
         mDatabaseReference=  FirebaseUtil.mDatabaseReference;
-        event = events;
+       /**
+        * added firebaseutil here
+        * */
+       event = FirebaseUtil.events;
         mChildListener= new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 EventInput eventInput= snapshot.getValue(EventInput.class);
-                //Log.d("Event: ", eventInput.getEventname());
                 eventInput.setId(snapshot.getKey());
                 event.add(eventInput);
                 notifyItemInserted(event.size()-1);
@@ -83,7 +85,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.event_title.setText(event.get(position).getEventname());
         holder.event_date.setText(event.get(position).getEventdate ());
         holder.event_note.setText(event.get(position).getEventdetails());
-        //holder.event_image.setImageResource(events.get(position).getEventimage());
+        //holder.event_image.set
     }
 
     @Override
@@ -95,12 +97,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView event_title;
         TextView event_note;
         TextView event_date;
-        ImageView event_image;
+        //ImageView event_image;
 
     public myViewHolder(@NonNull View itemView) {
         super(itemView);
         event_title= itemView.findViewById(R.id.titleDiary);
-        event_image= itemView.findViewById(R.id.imageDiary);
+        //event_image= itemView.findViewById(R.id.imageDiary);
         event_date= itemView.findViewById(R.id.dateDiary);
         event_note= itemView.findViewById(R.id.noteDiary);
         itemView.setOnClickListener(this);
