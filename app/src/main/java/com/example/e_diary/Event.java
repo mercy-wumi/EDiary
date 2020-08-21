@@ -137,10 +137,17 @@ public class Event extends AppCompatActivity {
             ref.putFile(imageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    String url = ref.getDownloadUrl().toString();
-                    //getUploadSessionUri().toString();
-                    event_input.setEventimage(url);
-                    showimage(url);
+
+                    // This method is the correct way of getting download url from cloud storage
+                    taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String url =  uri.toString(); //ref.getDownloadUrl().toString();
+                            //getUploadSessionUri().toString();
+                            event_input.setEventimage(url);
+                            showimage(url);
+                        }
+                    });
                 }
             });
         }
@@ -219,7 +226,7 @@ public class Event extends AppCompatActivity {
     }
 
     private void showimage(String url){
-        if (url != null && url.isEmpty() == false){
+        if (url != null && !url.isEmpty()){
             int width = Resources.getSystem().getDisplayMetrics().widthPixels;
             Picasso.get().load(url).resize(width, width*2/3).centerCrop().into(imageView);
 

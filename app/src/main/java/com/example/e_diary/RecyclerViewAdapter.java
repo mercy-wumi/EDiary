@@ -18,6 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -86,6 +87,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.event_date.setText(event.get(position).getEventdate ());
         holder.event_note.setText(event.get(position).getEventdetails());
         //holder.event_image.set
+        if (event.get(position).getEventimage() != null) Picasso.get().load(event.get(position).getEventimage()).into(holder.event_image);
     }
 
     @Override
@@ -97,12 +99,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView event_title;
         TextView event_note;
         TextView event_date;
-        //ImageView event_image;
+        ImageView event_image;
 
     public myViewHolder(@NonNull View itemView) {
         super(itemView);
         event_title= itemView.findViewById(R.id.titleDiary);
-        //event_image= itemView.findViewById(R.id.imageDiary);
+        event_image= itemView.findViewById(R.id.imageDiary);
         event_date= itemView.findViewById(R.id.dateDiary);
         event_note= itemView.findViewById(R.id.noteDiary);
         itemView.setOnClickListener(this);
