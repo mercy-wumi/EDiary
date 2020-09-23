@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -32,6 +34,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Event extends AppCompatActivity {
@@ -41,12 +44,13 @@ public class Event extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
     private static final int PICTURE_RESULT = 42;
     private StorageReference mStorageRef;
-
-    TextInputEditText eventDate;
+    final Calendar myCalendar = Calendar.getInstance();
     TextInputEditText eventTitle;
     TextInputEditText eventDetails;
     ImageView imageView;
     EventInput event_input;
+    EditText eventDate;
+    DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +79,7 @@ public class Event extends AppCompatActivity {
 
         this.event_input = event_input;
         eventTitle.setText(event_input.getEventname());
-        eventDate.setText(event_input.getEventdate());
+        //eventDate.setText(event_input.getEventdate());
         eventDetails.setText(event_input.getEventdetails());
         showimage(event_input.getEventimage());
 
@@ -126,6 +130,33 @@ public class Event extends AppCompatActivity {
                 startActivityForResult(intent.createChooser(intent,"Insert Picture"), PICTURE_RESULT);
             }
         });
+
+        // perform click event on edit text
+        eventDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calender class's instance and get current date , month and year from calender
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR); // current year
+                int mMonth = c.get(Calendar.MONTH); // current month
+                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                // date picker dialog
+                datePickerDialog = new DatePickerDialog(Event.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // set day of month , month and year value in the edit text
+                                eventDate.setText(dayOfMonth + "/"
+                                        + (monthOfYear + 1) + "/" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+        });
+
     }
 
     @Override
@@ -221,8 +252,8 @@ public class Event extends AppCompatActivity {
      *  is null I checked for empty fields when the delete action is triggered*/
     private boolean isClean(){
         return eventTitle.getText().toString().equals("") ||
-        eventDetails.getText().toString().equals("") ||
-        eventDate.getText().toString().equals("");
+        eventDetails.getText().toString().equals("")
+        ||eventDate.getText().toString().equals("");
     }
 
     private void showimage(String url){

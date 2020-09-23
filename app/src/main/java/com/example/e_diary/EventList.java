@@ -39,7 +39,6 @@ public class EventList extends AppCompatActivity {
         setContentView(R.layout.activity_event_list);
 
         mAuth = FirebaseAuth.getInstance();
-
         Toolbar mtoolbar=findViewById(R.id.eventListToolbar);
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
