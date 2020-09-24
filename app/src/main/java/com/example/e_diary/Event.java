@@ -252,15 +252,14 @@ public class Event extends AppCompatActivity {
      *  is null I checked for empty fields when the delete action is triggered*/
     private boolean isClean(){
         return eventTitle.getText().toString().equals("") ||
-        eventDetails.getText().toString().equals("")
-        ||eventDate.getText().toString().equals("");
+                eventDetails.getText().toString().equals("")
+                ||eventDate.getText().toString().equals("");
     }
 
     private void showimage(String url){
         if (url != null && !url.isEmpty()){
             int width = Resources.getSystem().getDisplayMetrics().widthPixels;
             Picasso.get().load(url).resize(width, width*2/3).centerCrop().into(imageView);
-
         }
     }
 }
