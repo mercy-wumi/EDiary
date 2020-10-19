@@ -58,12 +58,12 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            />
+<!--        <Spinner-->
+<!--            android:id="@+id/spinner"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            />-->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,8 +92,8 @@
             android:layout_height="wrap_content"
             android:minHeight="160dp"
             android:layout_margin="16dp"
-            android:layout_gravity="center"
             android:layout_marginTop="50dp"
+            android:scaleType="centerCrop"
             tools:src="@android:color/transparent" />
     </LinearLayout>
 

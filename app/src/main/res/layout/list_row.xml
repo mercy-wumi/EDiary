@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:id="@+id/singleEvent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardList"
@@ -15,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -23,48 +25,45 @@
                 android:id="@+id/imageDiary"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ediary"
                 android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                android:src="@drawable/ediary" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
 
-    <TextView
-        android:id="@+id/titleDiary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DIVE INTO ANDROID LEARNING"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imageDiary"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        />
+            <TextView
+                android:id="@+id/titleDiary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:text="DIVE INTO ANDROID LEARNING"
+                android:textStyle="bold" />
 
 
-<TextView
-    android:id="@+id/noteDiary"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="I started learning android since I have passion for it and since then I have involved myself in online learning at Udacity and also personal practice."
-    app:layout_constraintStart_toEndOf="@id/imageDiary"
-    app:layout_constraintTop_toBottomOf="@id/titleDiary"
-    android:layout_marginTop="8dp"
-    android:layout_marginStart="16dp"
-    android:ellipsize="end"/>
+            <TextView
+                android:id="@+id/noteDiary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:text="I started learning android since I have passion for it and since then I have involved myself in online learning at Udacity and also personal practice." />
 
-    <TextView
-        android:id="@+id/dateDiary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="21/04/2020"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/noteDiary"
-        android:textStyle="italic"/>
+                <TextView
+                    android:id="@+id/dateDiary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="21/04/2020"
+                    android:textStyle="italic" />
+            </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

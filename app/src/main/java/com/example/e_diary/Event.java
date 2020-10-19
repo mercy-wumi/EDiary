@@ -79,7 +79,7 @@ public class Event extends AppCompatActivity {
 
         this.event_input = event_input;
         eventTitle.setText(event_input.getEventname());
-        //eventDate.setText(event_input.getEventdate());
+        eventDate.setText(event_input.getEventdate());
         eventDetails.setText(event_input.getEventdetails());
         showimage(event_input.getEventimage());
 
@@ -87,38 +87,38 @@ public class Event extends AppCompatActivity {
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        spinner= findViewById(R.id.spinner);
-
-        List<String> categories= new ArrayList<>();
-        categories.add("Choose Category");
-        categories.add("School");
-        categories.add("Home");
-        categories.add("Friend");
-        categories.add("Work");
-        categories.add("Recreational");
-
-        ArrayAdapter<String> dataAdapter;
-        dataAdapter= new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
-
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (adapterView.getItemAtPosition(i).equals("Choose Category")){
-
-                }
-                else {
-                    String item= adapterView.getItemAtPosition(i).toString();
-                    Toast.makeText(adapterView.getContext(), "selected: "+item, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+//        spinner= findViewById(R.id.spinner);
+//
+//        List<String> categories= new ArrayList<>();
+//        categories.add("Choose Category");
+//        categories.add("School");
+//        categories.add("Home");
+//        categories.add("Friend");
+//        categories.add("Work");
+//        categories.add("Recreational");
+//
+//        ArrayAdapter<String> dataAdapter;
+//        dataAdapter= new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+//
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(dataAdapter);
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                if (adapterView.getItemAtPosition(i).equals("Choose Category")){
+//
+//                }
+//                else {
+//                    String item= adapterView.getItemAtPosition(i).toString();
+//                    Toast.makeText(adapterView.getContext(), "selected: "+item, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
 
         imgUpload = findViewById(R.id.uploadImg);
         imgUpload.setOnClickListener(new View.OnClickListener() {

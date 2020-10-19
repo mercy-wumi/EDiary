@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MoreStory">
+
+
+    <ImageView
+        android:id="@+id/eventimage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ediary" />
+
+    <TextView
+        android:id="@+id/titleofevent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Title"
+        app:layout_constraintTop_toBottomOf="@id/eventimage"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <TextView
+        android:id="@+id/Titledetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text=""
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/titleofevent" />
+
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Titledetails"/>
+
+
+    <TextView
+        android:id="@+id/Descriptn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Description"
+        app:layout_constraintTop_toBottomOf="@id/Titledetails" />
+
+    <TextView
+        android:id="@+id/eventDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:layout_margin="16dp"
+        android:inputType="textMultiLine"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/Descriptn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

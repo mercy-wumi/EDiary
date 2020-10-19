@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
         signinButton=findViewById(R.id.signinBtn);
         signupButton=findViewById(R.id.signup_btn);
         signupButton.setOnClickListener(new View.OnClickListener() {
