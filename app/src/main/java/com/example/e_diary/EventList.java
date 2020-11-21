@@ -34,14 +34,23 @@ public class EventList extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
+
 
         mAuth = FirebaseAuth.getInstance();
         Toolbar mtoolbar=findViewById(R.id.eventListToolbar);
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
        RecyclerView recyclerView= findViewById(R.id.recycler);
        mAdapter = new RecyclerViewAdapter();

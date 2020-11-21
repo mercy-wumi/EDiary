@@ -6,6 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MoreStory">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/eventToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="Event Details"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.Toolbar>
+
 
     <ImageView
         android:id="@+id/eventimage"
@@ -13,7 +35,7 @@
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventToolbar"
         app:srcCompat="@drawable/ediary" />
 
     <TextView
@@ -23,7 +45,7 @@
         android:layout_margin="16dp"
         android:text="Title"
         app:layout_constraintTop_toBottomOf="@id/eventimage"
-        tools:layout_editor_absoluteX="8dp" />
+        />
 
     <TextView
         android:id="@+id/Titledetails"
@@ -32,15 +54,45 @@
         android:layout_margin="16dp"
         android:text=""
         android:textStyle="bold"
+        android:fontFamily="sans-serif"
         app:layout_constraintTop_toBottomOf="@id/titleofevent" />
 
     <View
+        android:id="@+id/firstdivider"
         android:layout_height="1dp"
         android:layout_width="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Titledetails"/>
+        app:layout_constraintTop_toBottomOf="@id/Titledetails"
+        android:background="@android:color/darker_gray"/>
 
+    <TextView
+        android:id="@+id/dateofevent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Date"
+        app:layout_constraintTop_toBottomOf="@id/firstdivider"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text=""
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
+        app:layout_constraintTop_toBottomOf="@id/dateofevent" />
+
+    <View
+        android:id="@+id/secondDivider"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Date"
+        android:background="@android:color/darker_gray"/>
 
     <TextView
         android:id="@+id/Descriptn"
@@ -48,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="Description"
-        app:layout_constraintTop_toBottomOf="@id/Titledetails" />
+        app:layout_constraintTop_toBottomOf="@id/secondDivider" />
 
     <TextView
         android:id="@+id/eventDescription"
@@ -58,6 +110,19 @@
         android:layout_margin="16dp"
         android:inputType="textMultiLine"
         android:textStyle="bold"
+        android:fontFamily="sans-serif"
         app:layout_constraintTop_toBottomOf="@id/Descriptn" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/eventDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ic_baseline_edit_24"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20sp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,6 +28,7 @@ package com.example.e_diary;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,9 +50,22 @@ public class Signin extends AppCompatActivity {
     Button signin;
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
+        Toolbar mtoolbar=findViewById(R.id.signin_toolbar);
+        setSupportActionBar(mtoolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         mail= findViewById(R.id.username_txt);
         pass= findViewById(R.id.pass_txt);
         signin = findViewById(R.id.signin_btn);

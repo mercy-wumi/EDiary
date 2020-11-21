@@ -53,6 +53,12 @@ public class Event extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
@@ -66,8 +72,14 @@ public class Event extends AppCompatActivity {
         eventTitle= findViewById(R.id.event_title);
         eventDetails= findViewById(R.id.event_details);
         imageView= findViewById(R.id.image);
+
         Intent intent= getIntent();
-        EventInput event_input= (EventInput) intent.getSerializableExtra("Event");
+
+//        eventTitle.setText(intent.getExtras().getString("title"));
+//        eventDate.setText(intent.getExtras().getString("date"));
+//        eventDetails.setText(intent.getExtras().getString("description"));
+
+        //EventInput event_input= (EventInput) intent.getSerializableExtra("Event");
 
         /**guess the if statement should be removed */
         if (event_input == null){
@@ -86,6 +98,10 @@ public class Event extends AppCompatActivity {
         Toolbar mtoolbar=findViewById(R.id.eventToolbar);
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
 
 //        spinner= findViewById(R.id.spinner);
 //
@@ -148,8 +164,7 @@ public class Event extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // set day of month , month and year value in the edit text
-                                eventDate.setText(dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
+                                eventDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
                             }
                         }, mYear, mMonth, mDay);

@@ -115,7 +115,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             int position = getAdapterPosition();
             Log.d("click", String.valueOf(position));
             EventInput selectedEvent= event.get(position);
-            Intent intent= new Intent(view.getContext(), Event.class);
+            Intent intent= new Intent(view.getContext(), MoreStory.class);
+            //Intent intent= new Intent(view.getContext(), Event.class);
             intent.putExtra("Event", selectedEvent);
             view.getContext().startActivity(intent);
         }
