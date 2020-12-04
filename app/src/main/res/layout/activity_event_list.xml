@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EventList">
+    tools:context=".EventList"
+    android:id="@+id/relativeLayout">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/eventListToolbar"
@@ -16,19 +18,35 @@
         android:elevation="4dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <TextView
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
             android:text="@string/event"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:layout_conversion_absoluteHeight="27dp"
+            />
     </androidx.appcompat.widget.Toolbar>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/list_row" />
-</LinearLayout>
+        tools:listitem="@layout/list_row"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"
+
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btmNav"
+        app:itemBackground="@color/colorPrimary"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/event_list_menu"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

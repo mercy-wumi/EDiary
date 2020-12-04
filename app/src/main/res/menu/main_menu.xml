@@ -6,11 +6,13 @@
         android:id="@+id/save_menu"
         android:title="Save"
         app:showAsAction="always"/>
-<!--    <item-->
-<!--        android:id="@+id/edit_menu"-->
-<!--        android:title="Edit"/>-->
+
     <item
         android:id="@+id/delete_menu"
         android:title="Delete"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/share_menu"
+        android:title="Share"
         app:showAsAction="never"/>
 </menu>

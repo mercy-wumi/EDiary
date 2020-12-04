@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -33,24 +34,44 @@ public class EventList extends AppCompatActivity {
     private RecyclerViewAdapter mAdapter;
     private FirebaseAuth mAuth;
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        onBackPressed();
+//        return true;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
 
+        BottomNavigationView bottomNav = findViewById(R.id.btmNav);
+        bottomNav.setSelectedItemId(R.id.event_menu);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case  R.id.event_menu:
+                        return true;
+                    case  R.id.insert_menu:
+                        startActivity(new Intent(getApplicationContext(), Event.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case  R.id.logout_menu:
+                        startActivity(new Intent(getApplicationContext(), Signin.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         Toolbar mtoolbar=findViewById(R.id.eventListToolbar);
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
        RecyclerView recyclerView= findViewById(R.id.recycler);
        mAdapter = new RecyclerViewAdapter();
@@ -60,36 +81,29 @@ public class EventList extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater= getMenuInflater();
-        inflater.inflate(R.menu.event_list_menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater= getMenuInflater();
+//        inflater.inflate(R.menu.event_list_menu, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.insert_menu:
-                Intent intent= new Intent(this, Event.class);
-                startActivity(intent);
-                return true;
-            case R.id.logout_menu:
-                mAuth.getInstance().signOut();
-                Intent logout_intent= new Intent(this, Signin.class);
-                startActivity(logout_intent);
-                Toast.makeText(this, "user logged out successfully", Toast.LENGTH_SHORT).show();
-                return true;
-
-//                        .addOnCompleteListener(new OnCompleteListener<Void>(){
-//                    public void onComplete(@NonNull Task<Void> task){
-//
-//                    }
-//
-//                });
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.insert_menu:
+//                Intent intent= new Intent(this, Event.class);
+//                startActivity(intent);
+//                return true;
+//            case R.id.logout_menu:
+//                mAuth.getInstance().signOut();
+//                Intent logout_intent= new Intent(this, Signin.class);
+//                startActivity(logout_intent);
+//                Toast.makeText(this, "user logged out successfully", Toast.LENGTH_SHORT).show();
+//                return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     protected void onPause() {

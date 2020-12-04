@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -63,6 +64,27 @@ public class Event extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
+        BottomNavigationView bottomNav = findViewById(R.id.btmNav);
+        bottomNav.setSelectedItemId(R.id.insert_menu);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case  R.id.event_menu:
+                        startActivity(new Intent(getApplicationContext(), EventList.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case  R.id.insert_menu:
+                        return true;
+                    case  R.id.logout_menu:
+                        startActivity(new Intent(getApplicationContext(), Signin.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
         FirebaseUtil.openFbReference("EventInput");
         mFirebaseDatabase=  FirebaseUtil.mFirebaseDatabase;
         mDatabaseReference=  FirebaseUtil.mDatabaseReference;
@@ -79,7 +101,7 @@ public class Event extends AppCompatActivity {
 //        eventDate.setText(intent.getExtras().getString("date"));
 //        eventDetails.setText(intent.getExtras().getString("description"));
 
-        //EventInput event_input= (EventInput) intent.getSerializableExtra("Event");
+        EventInput event_input= (EventInput) intent.getSerializableExtra("Event");
 
         /**guess the if statement should be removed */
         if (event_input == null){

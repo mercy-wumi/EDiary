@@ -1,16 +1,20 @@
 package com.example.e_diary;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
@@ -35,6 +39,27 @@ public class MoreStory extends AppCompatActivity {
    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_story);
+
+//        BottomNavigationView bottomNav = findViewById(R.id.btmNav);
+//        bottomNav.setSelectedItemId(R.id.event_menu);
+//        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                switch (menuItem.getItemId()){
+//                    case  R.id.event_menu:
+//                        return true;
+//                    case  R.id.insert_menu:
+//                        startActivity(new Intent(getApplicationContext(), Event.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
+//                    case  R.id.logout_menu:
+//                        startActivity(new Intent(getApplicationContext(), Signin.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
+//                }
+//                return false;
+//            }
+//        });
 
         Toolbar mtoolbar=findViewById(R.id.eventToolbar);
         setSupportActionBar(mtoolbar);
@@ -62,6 +87,14 @@ public class MoreStory extends AppCompatActivity {
                 intent.putExtra("date", date);
                 intent.putExtra("description", description);
                 startActivity(intent);
+
+//                int position = getAdapterPosition();
+//                Log.d("click", String.valueOf(position));
+//                EventInput selectedEvent= event.get(position);
+//                Intent intent= new Intent(view.getContext(), MoreStory.class);
+//                Intent intent= new Intent(view.getContext(), Event.class);
+//                intent.putExtra("Event", selectedEvent);
+//                view.getContext().startActivity(intent);
             }
         });
 
