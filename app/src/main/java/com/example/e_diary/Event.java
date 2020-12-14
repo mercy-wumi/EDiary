@@ -2,11 +2,17 @@ package com.example.e_diary;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -63,27 +69,6 @@ public class Event extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-
-        BottomNavigationView bottomNav = findViewById(R.id.btmNav);
-        bottomNav.setSelectedItemId(R.id.insert_menu);
-        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case  R.id.event_menu:
-                        startActivity(new Intent(getApplicationContext(), EventList.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case  R.id.insert_menu:
-                        return true;
-                    case  R.id.logout_menu:
-                        startActivity(new Intent(getApplicationContext(), Signin.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
 
         FirebaseUtil.openFbReference("EventInput");
         mFirebaseDatabase=  FirebaseUtil.mFirebaseDatabase;
@@ -158,10 +143,31 @@ public class Event extends AppCompatActivity {
 //            }
 //        });
 
+        // want to add storage permission
+
         imgUpload = findViewById(R.id.uploadImg);
         imgUpload.setOnClickListener(new View.OnClickListener() {
+
+            // storage permission inserted
+            private void requestStoragePermission(){
+                if (ContextCompat.checkSelfPermission(Event.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
+                    return;
+                }
+                if (ActivityCompat.shouldShowRequestPermissionRationale(Event.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                    showStoragePermission();
+                } else {
+                    ActivityCompat.requestPermissions(Event.this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            101);
+                }
+            }
+
+            // storage permission ended
             @Override
             public void onClick(View view) {
+                // added the function or method to show the permission
+                requestStoragePermission();
+
                 Intent intent= new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/jpeg");
                 intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
@@ -298,5 +304,28 @@ public class Event extends AppCompatActivity {
             int width = Resources.getSystem().getDisplayMetrics().widthPixels;
             Picasso.get().load(url).resize(width, width*2/3).centerCrop().into(imageView);
         }
+    }
+
+    // permission reason added
+    private void showStoragePermission() {
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("Storage Permission").setMessage("The stoarge permission is needed for uploading files").
+                setCancelable(false).setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ActivityCompat.requestPermissions(Event.this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        101);
+            }
+        });
+        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

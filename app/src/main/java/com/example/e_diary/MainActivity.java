@@ -38,13 +38,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser() == null){
-            Intent intent = new Intent(this, Signin.class);
-            startActivity(intent);
-        }else{
+        if(mAuth.getCurrentUser() != null){
             Intent intent = new Intent(this, EventList.class);
             startActivity(intent);
-        }
+
+//            Intent intent = new Intent(this, Signin.class);
+//            startActivity(intent);
+         }
+//        else{
+//            Intent intent = new Intent(this, EventList.class);
+//            startActivity(intent);
+//        }
     }
 
 }
