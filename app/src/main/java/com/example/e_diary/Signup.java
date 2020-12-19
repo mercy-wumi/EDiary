@@ -83,7 +83,7 @@ public class Signup extends AppCompatActivity {
                                     //updateUI(user);
 
                                 } else {
-                                    Toast.makeText(Signup.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Signup.this, "Authentication Failed or email already exist", Toast.LENGTH_SHORT).show();
                                     //updateUI(null);
                                 }
 
