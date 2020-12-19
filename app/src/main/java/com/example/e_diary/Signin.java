@@ -19,7 +19,7 @@
 //    }
 //
 //    public void eventlist(View view) {
-//        Intent intentevent= new Intent(Signin.this, EventList.class);
+//        Intent intentevent= new Intent(Signin.this, EventListActivity.class);
 //        startActivity(intentevent);
 //    }
 //}
@@ -33,7 +33,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,10 +40,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class Signin extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -64,7 +64,7 @@ public class Signin extends AppCompatActivity {
 
         Toolbar mtoolbar=findViewById(R.id.signin_toolbar);
         setSupportActionBar(mtoolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -101,7 +101,7 @@ public class Signin extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                    // Log.d(TAG, "signInWithEmail:success");
-                                    startActivity(new Intent(getApplicationContext(), EventList.class));
+                                    startActivity(new Intent(getApplicationContext(), EventListActivity.class));
                                     Toast.makeText(Signin.this, "login Successful", Toast.LENGTH_SHORT).show();
                                     //FirebaseUser user = mAuth.getCurrentUser();
                                     //updateUI(user);

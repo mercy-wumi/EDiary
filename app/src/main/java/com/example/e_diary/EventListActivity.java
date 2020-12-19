@@ -1,33 +1,27 @@
 package com.example.e_diary;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class EventList extends AppCompatActivity {
-    ArrayList<EventInput> event;
+public class EventListActivity extends AppCompatActivity {
+    ArrayList<Event> event;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildListener;
@@ -48,13 +42,14 @@ public class EventList extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.btmNav);
         bottomNav.setSelectedItemId(R.id.event_menu);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case  R.id.event_menu:
                         return true;
                     case  R.id.insert_menu:
-                        startActivity(new Intent(getApplicationContext(), Event.class));
+                        startActivity(new Intent(getApplicationContext(), EditEventActvity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case  R.id.logout_menu:
@@ -69,7 +64,7 @@ public class EventList extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         Toolbar mtoolbar=findViewById(R.id.eventListToolbar);
         setSupportActionBar(mtoolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -92,7 +87,7 @@ public class EventList extends AppCompatActivity {
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //        switch (item.getItemId()){
 //            case R.id.insert_menu:
-//                Intent intent= new Intent(this, Event.class);
+//                Intent intent= new Intent(this, EditEventActvity.class);
 //                startActivity(intent);
 //                return true;
 //            case R.id.logout_menu:

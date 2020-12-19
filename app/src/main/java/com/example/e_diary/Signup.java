@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class Signup extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText email, username, pass;
@@ -43,7 +45,7 @@ public class Signup extends AppCompatActivity {
 
         Toolbar mtoolbar=findViewById(R.id.signup_toolbar);
         setSupportActionBar(mtoolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -75,7 +77,7 @@ public class Signup extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(),Event.class));
+                                    startActivity(new Intent(getApplicationContext(), EditEventActvity.class));
                                     Toast.makeText(Signup.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                     //FirebaseUser user = mAuth.getCurrentUser();
                                     //updateUI(user);

@@ -22,11 +22,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import static com.example.e_diary.FirebaseUtil.events;
-
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.myViewHolder> {
 
-    ArrayList<EventInput> event;
+    ArrayList<Event> event;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildListener;
@@ -35,17 +33,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         FirebaseUtil.openFbReference("EventInput");
         mFirebaseDatabase=  FirebaseUtil.mFirebaseDatabase;
         mDatabaseReference=  FirebaseUtil.mDatabaseReference;
-       /**
+       /*
         * added firebaseutil here
         * */
        event = FirebaseUtil.events;
         mChildListener= new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                EventInput eventInput= snapshot.getValue(EventInput.class);
-                eventInput.setId(snapshot.getKey());
-                event.add(eventInput);
-                notifyItemInserted(event.size()-1);
+                Event event = snapshot.getValue(Event.class);
+                assert event != null;
+                event.setId(snapshot.getKey());
+                RecyclerViewAdapter.this.event.add(event);
+                notifyItemInserted(RecyclerViewAdapter.this.event.size()-1);
                 notifyDataSetChanged();
             }
 
@@ -114,9 +113,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public void onClick(View view) {
             int position = getAdapterPosition();
             Log.d("click", String.valueOf(position));
-            EventInput selectedEvent= event.get(position);
+            Event selectedEvent= event.get(position);
 //            Intent intent= new Intent(view.getContext(), MoreStory.class);
-            Intent intent= new Intent(view.getContext(), Event.class);
+            Intent intent= new Intent(view.getContext(), MoreStory.class);
             intent.putExtra("Event", selectedEvent);
             view.getContext().startActivity(intent);
         }

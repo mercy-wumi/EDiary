@@ -18,7 +18,7 @@ public class FirebaseUtil {
     public static FirebaseAuth mfirebaseAuth;
     public static FirebaseAuth.AuthStateListener mAuthListener;
     public static StorageReference mStorageRef;
-    public static ArrayList<EventInput> events;
+    public static ArrayList<Event> events;
 
     private FirebaseUtil(){}
 
@@ -35,7 +35,7 @@ public class FirebaseUtil {
             };
             connectStorage();
         }
-        events = new ArrayList<EventInput>();
+        events = new ArrayList<Event>();
         mDatabaseReference = mFirebaseDatabase.getReference().child(ref);
     }
 

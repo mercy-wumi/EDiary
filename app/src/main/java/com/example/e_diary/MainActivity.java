@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     Button signinButton;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, Signin.class);
             startActivity(intent);
         }else{
-            Intent intent = new Intent(this, EventList.class);
+            Intent intent = new Intent(this, EventListActivity.class);
             startActivity(intent);
         }
     }

@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MoreStory" />
-        <activity android:name=".EventList" /> <!-- android:label="EventList" -->
+        <activity android:name=".EventListActivity" /> <!-- android:label="EventListActivity" -->
         <!-- android:parentActivityName=".MainActivity"> -->
         <!-- <meta-data -->
         <!-- android:name="android.support.PARENT_ACTIVITY" -->
         <!-- android:value=".MainActivity"/> -->
         <!-- </activity> -->
-        <activity android:name=".Event" />
+        <activity android:name=".EditEventActvity" />
         <activity android:name=".Signup" />
         <activity android:name=".Signin" />
         <activity android:name=".MainActivity">
