@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".EditEventActvity">
 
     <androidx.appcompat.widget.Toolbar
@@ -31,12 +30,18 @@
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btmNav"
+        android:layout_marginTop="56dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        android:orientation="vertical"
-        android:layout_marginTop="60dp">
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/event_date"
@@ -100,7 +105,7 @@
             android:contentDescription="@string/event_image_content_des"
             />
     </LinearLayout>
-
+    </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -108,8 +113,9 @@
         app:itemBackground="@color/colorPrimary"
         app:itemTextColor="@drawable/selector"
         app:itemIconTint="@drawable/selector"
-        app:menu="@menu/event_list_menu"
+        app:menu="@menu/btm_nav_menu"
         android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
         />
 
 </RelativeLayout>
